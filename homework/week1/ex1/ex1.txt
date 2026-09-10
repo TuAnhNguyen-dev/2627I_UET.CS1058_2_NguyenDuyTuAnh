@@ -1,0 +1,16 @@
+Ta cần thay đổi các giá trị mà leader ban đầu của p thay thành leader của q, nhưng khi
+thiết lập leader[i] = leader[q], ta cũng vô tình thay đổi chính cái tham chiếu là leader[p]
+khi i == p. ví dụ ta có [1,1,1,0,1,0]. khi p = 2 và q = 3, leader[2] = leader[3] sẽ làm
+leader[2] = 0, nhưng khi i == p, ta cũng đang thay đổi leader[p] thành 0.
+Điều này dẫn đến việc mất thông tin về leader ban đầu của p, dẫn đến không thể
+thay đổi các giá trị 1 ở sau p. Tức mảng bến thành [0,0,0,0,1,0] thay vì [0,0,0,0,0,0]
+
+Để fix bug, ta chỉ cần lưu giá trị leader[p] vào một biến, và sử dụng nó để so sánh.
+public void union(int p, int q) {
+    int leaderP = leader[p]; // Lưu giá trị leader ban đầu của p
+    for (int i = 0; i < leader.length; i++) {
+        if (leader[i] == leaderP) {
+            leader[i] = leader[q];
+        }
+    }
+}

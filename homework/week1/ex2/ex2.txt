@@ -1,0 +1,11 @@
+a, do tất cả các phẩn tử từ 1 đến n-1 đều được nối với 0 nên ta có duy nhất 1 thành phần liên thông
+b, số lần cập nhật mảng sau union(0, 1) là 1 lần, sau union(0, 2) là 2 lần, ... sau
+union(0, n-1) là n-1 lần. Tổng số lần cập nhật mảng là 1 + 2 + ... + (n-1) = n(n-1)/2 lần
+c, sau khi thực hiện các thao tác union, ta sẽ có một cây hoàn toàn lệch về chiều cao 
+với đỉnh là n-1 và lá là 0. Nếu muốn find(0), ta cần tìm root của 0. Mà muốn tìm được
+root, ta cẩn phải đi từ node 0 lên. Do nó bị lệch nên ta phải đi lên n-1 lần mới tìm được root.
+Do đó hàm find lúc này đang là worst case, chạy với độ phức tạp O(N)
+d, sau union(0, 1) ta sẽ có 0 cắm vào 1. với tất cả union sau, node phải luôn là 1 và nhỏ hơn 
+node trái nên sẽ được cắm vào root của node trái, tức số 1. Ta thu được cây chiều cao là 2,
+độ rộng rất lớn, trải từ 0 đến n-1 (ngoại trừ 1 do là root). Vậy nên trong trường hợp này, 
+mọi thao tác find chỉ cần 1 lần là đủ để biết root là ai. tức độ phức tạp O(1)
