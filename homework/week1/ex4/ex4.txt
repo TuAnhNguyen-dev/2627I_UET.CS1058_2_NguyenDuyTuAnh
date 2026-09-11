@@ -1,0 +1,8 @@
+ta thấy 9 được nối với 8 nên cây chứa 8 hiện tại có kích thước là 2.
+Do đó để nối 8 vào một root khác, ta cần nối vào root có kích thước >= 2.
+2 root còn lại là 0 và 4 đều có kích thước là 4 nên 8 có thể nối vào 2
+root này.
+Ngoài ra 8 cũng không nhất thiết phải nối vào đa cả, có nghĩa 8 có thể
+trỏ lại chính nó.
+
+Tức parend[8] có thể nhận các giá trị 0, 4 hoặc 8.
