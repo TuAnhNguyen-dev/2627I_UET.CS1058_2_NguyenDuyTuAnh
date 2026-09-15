@@ -1,0 +1,9 @@
+do union(p, q) sẽ trỏ p đến q nếu cây chứa q và p có cùng kích thước nên
+khi xét 2 node 0 và 4 khi chưa nối vào nhau, nhận thấy cả 2 cây chứa 0 hoặc 4
+đều có cùng kích thước là 4. Mà trong hình 0 được nối vào 4 nên union(4, 0)
+được thực hiện thay vì union(0, 4).
+
+tương tự, các union(p, q) được thực hện ngoài (p, q) = (4, 0), tất các cặp
+(p, q) còn lại đều có đường đi đến nhau, đồng thời chênh lệch về kích thước
+cây chứa nên không có cặp nào không được thực hiện. Tất cả các cặp còn lại:
+(2, 3), (4, 5), (5, 0), (5, 7), (6, 4), (8, 9)
