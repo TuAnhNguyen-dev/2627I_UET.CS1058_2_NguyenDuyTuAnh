@@ -5,20 +5,25 @@ import java.util.Scanner;
 public class findBottomElement {
     public int findBottomElement(int[] nums) {
         int n = nums.length;
-        if (n == 0) {
-            return -1; // Return -1 for empty array
+
+        if (n <= 1) {
+            return n-1;
+        }
+
+        if (nums[n-1] < nums[n-2]) {
+            return n-1;
         }
 
         int left = 0;
-        int right = n - 1;
+        int right = n - 2;
 
-        while (left < right) {
-            int mid = left + (right - left) / 2;
+        while (left <= right) {
+            int mid = (right + left) / 2;
 
-            if (nums[mid] < nums[right]) {
-                left = mid + 1;
+            if (nums[mid] < nums[mid+1]) {
+                right = mid - 1;
             } else {
-                right = mid;
+                left = mid + 1;
             }
         }
 
