@@ -36,11 +36,7 @@ class Result2 {
             }
         }
 
-        if (stk.isEmpty()) {
-            return "YES";
-        }
-
-        return "NO";
+        return (stk.isEmpty()) ? "YES" : "NO";
     }
 
 }

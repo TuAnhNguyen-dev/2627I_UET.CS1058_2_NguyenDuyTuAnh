@@ -9,11 +9,24 @@ public class SolutionForKillingPerson {
         Scanner scanner = new Scanner(System.in);
 
         if (scanner.hasNextInt()) {
-            int n = scanner.nextInt();
-            int k = scanner.nextInt();
+            int q = scanner.nextInt();
 
-            BrutalForce sol1 = new BrutalForce();
-            System.out.println(sol1.brutalForce(n, k));
+            while (q > 0) {
+                int n = scanner.nextInt();
+                int k = scanner.nextInt();
+
+                System.out.println(n);
+
+                BrutalForce sol1 = new BrutalForce();
+                System.out.println(sol1.brutalForce(n, k));
+
+                OptimalSolution sol2 = new OptimalSolution();
+                System.out.println(sol2.optimalSolution(n, k));
+
+                System.out.println();
+
+                q--;
+            }
         }
 
         scanner.close();
@@ -40,45 +53,14 @@ class BrutalForce {
     }
 }
 
-class UnionFind {
-    private int[] parents, weighted;
+class OptimalSolution {
+    public int optimalSolution(int n, int k) {
+        int survivorIndex = 0;
 
-    public int unionFind(int n, int k) {
-        parents = new int[n];
-        weighted = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            parents[i] = i;
-            weighted[i] = 1;
+        for (int i = 2; i <= n; i++) {
+            survivorIndex = (survivorIndex + k) % i;
         }
 
-        int currPersonLeft = n;
-        while (currPersonLeft > 1) {
-
-        }
-
-        return findRoot(0);
-    }
-
-    private int findRoot(int p) {
-        while (parents[p] != p) {
-            parents[p] = parents[parents[p]];
-            p = parents[p];
-        }
-        return p;
-    }
-
-    private void union(int p, int q) {
-        int pRoot = findRoot(p), qRoot = findRoot(q);
-
-        // make sure pRoot always point to qRoot
-        if (weighted[pRoot] > weighted[qRoot]) {
-            int temp = pRoot;
-            pRoot = qRoot;
-            qRoot = temp;
-        }
-
-        parents[pRoot] = qRoot;
-        weighted[qRoot] += weighted[pRoot];
+        return survivorIndex + 1;
     }
 }
